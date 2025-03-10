@@ -1,6 +1,8 @@
-{ config, lib, options, pkgs, ... }:
-with lib;
+{ config, lib, pkgs, ... }:
+
 let
+  inherit (lib) mkOption types;
+
   cfg = config.news;
 
   hostPlatform = pkgs.stdenv.hostPlatform;
@@ -39,10 +41,12 @@ let
       };
     };
 
-    config = { id = mkDefault (builtins.hashString "sha256" config.message); };
+    config = {
+      id = lib.mkDefault (builtins.hashString "sha256" config.message);
+    };
   });
 in {
-  meta.maintainers = [ maintainers.rycee ];
+  meta.maintainers = [ lib.maintainers.rycee ];
 
   options = {
     news = {
@@ -1891,8 +1895,8 @@ in {
       {
         time = "2024-12-08T17:22:13+00:00";
         condition = let
-          usingMbsync = any (a: a.mbsync.enable)
-            (attrValues config.accounts.email.accounts);
+          usingMbsync = lib.any (a: a.mbsync.enable)
+            (lib.attrValues config.accounts.email.accounts);
         in usingMbsync;
         message = ''
           isync/mbsync 1.5.0 has changed several things.
@@ -2112,6 +2116,17 @@ in {
 
           This replaces the existing module, 'programs.wpaperd', and adds a
           systemd service to ensure its execution.
+        '';
+      }
+
+      {
+        time = "2025-01-26T16:40:00+00:00";
+        message = ''
+          A new module is available: 'programs.mods'
+
+          mods is a command line AI tool that is highly configurable and allows
+          querying AI models hosted locally or by other services (OpenAI,
+          Cohere, Groq).
         '';
       }
     ];
