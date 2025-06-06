@@ -61,6 +61,7 @@ let
       ./programs/aerc.nix
       ./programs/aerospace.nix
       ./programs/afew.nix
+      ./programs/aichat.nix
       ./programs/alacritty.nix
       ./programs/alot.nix
       ./programs/antidote.nix
@@ -400,6 +401,7 @@ let
       ./services/linux-wallpaperengine.nix
       ./services/listenbrainz-mpd.nix
       ./services/lorri.nix
+      ./services/ludusavi.nix
       ./services/lxqt-policykit-agent.nix
       ./services/macos-remap-keys
       ./services/mako.nix
